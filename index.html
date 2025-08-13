@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMP Katolik St. Rafael Manado</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Styles */
+        .hero-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .simple-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .simple-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .nav-item {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-item:hover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #3b82f6;
+            transform: scaleX(1);
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #3b82f6;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        
+        /* Focus styles for accessibility */
+        button:focus, input:focus, textarea:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+        
+        /* Loading animation for images */
+        img {
+            transition: opacity 0.3s ease;
+        }
+        
+        img[src=""] {
+            opacity: 0;
+        }
+        
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .hero-gradient {
+                background: #000;
+                color: #fff;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-blue-600">
+                        <img src="images/logo-sekolah.png" alt="Logo SMP Katolik St. Rafael" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <span class="text-blue-600 font-bold text-lg hidden">SR</span>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-semibold text-gray-800">SMP Katolik St. Rafael</h1>
+                        <p class="text-xs text-gray-500">Manado</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#beranda" class="text-gray-700 hover:text-blue-600 font-medium nav-item">Beranda</a>
+                    <a href="#profil" class="text-gray-700 hover:text-blue-600 font-medium nav-item">Profil</a>
+                    <a href="#guru" class="text-gray-700 hover:text-blue-600 font-medium nav-item">Guru</a>
+                    <a href="#fasilitas" class="text-gray-700 hover:text-blue-600 font-medium nav-item">Fasilitas</a>
+                    <a href="#kontak" class="text-gray-700 hover:text-blue-600 font-medium nav-item">Kontak</a>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#beranda" class="block py-2 text-gray-700 hover:text-blue-600">Beranda</a>
+                <a href="#profil" class="block py-2 text-gray-700 hover:text-blue-600">Profil</a>
+                <a href="#guru" class="block py-2 text-gray-700 hover:text-blue-600">Guru</a>
+                <a href="#fasilitas" class="block py-2 text-gray-700 hover:text-blue-600">Fasilitas</a>
+                <a href="#kontak" class="block py-2 text-gray-700 hover:text-blue-600">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-gradient text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-8 fade-in">
+                <div class="w-32 h-32 md:w-40 md:h-40 bg-white bg-opacity-95 rounded-full flex items-center justify-center mx-auto mb-6 overflow-hidden shadow-2xl border-4 border-white border-opacity-30">
+                    <img src="images/logo-sekolah.png" alt="Logo SMP Katolik St. Rafael" class="w-28 h-28 md:w-36 md:h-36 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <span class="text-5xl md:text-6xl font-bold text-blue-600 hidden">SR</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">SMP Katolik St. Rafael</h1>
+                <p class="text-xl md:text-2xl mb-2 opacity-90">Manado, Sulawesi Utara</p>
+                <p class="text-lg opacity-80">"Mendidik dengan Kasih, Membentuk Karakter Unggul"</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToSection('profil')" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300">
+                    Tentang Kami
+                </button>
+                <button onclick="scrollToSection('kontak')" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition duration-300">
+                    Hubungi Kami
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sambutan Kepala Sekolah -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Sambutan Kepala Sekolah</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-gradient-to-br from-blue-50 to-white rounded-3xl p-8 md:p-12 shadow-xl border border-blue-100">
+                    <div class="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+                        <!-- Avatar -->
+                        <div class="flex-shrink-0">
+                            <div class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl overflow-hidden">
+                                <img src="images/herman-ventje-dien.jpg" alt="Sir. Herman Ventje Dien" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <svg class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div class="flex-1 text-center lg:text-left">
+                            <div class="mb-6">
+                                <h3 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3">Sir. Herman Ventje Dien. S.Fils</h3>
+                                <p class="text-blue-600 font-semibold text-lg">Kepala Sekolah SMP Katolik St. Rafael</p>
+                            </div>
+                            
+                            <div class="relative">
+                                <div class="absolute -top-4 -left-2 text-6xl text-blue-200 font-serif">"</div>
+                                <blockquote class="text-gray-700 text-lg md:text-xl leading-relaxed pl-8 pr-4">
+                                    <p class="mb-4 italic">
+                                        Selamat datang di SMP Katolik St. Rafael Manado. Sebagai lembaga pendidikan Katolik, kami berkomitmen untuk membentuk generasi muda yang tidak hanya unggul secara akademik, tetapi juga berkarakter mulia dan berakhlak terpuji.
+                                    </p>
+                                    <p class="italic">
+                                        Dengan dukungan tenaga pendidik yang profesional dan fasilitas yang memadai, kami mengundang putra-putri terbaik untuk bergabung dalam keluarga besar St. Rafael dan meraih masa depan yang gemilang.
+                                    </p>
+                                </blockquote>
+                                <div class="absolute -bottom-4 -right-2 text-6xl text-blue-200 font-serif">"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profil Sekolah -->
+    <section id="profil" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Profil Sekolah</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Tentang SMP Katolik St. Rafael</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        SMP Katolik St. Rafael Manado adalah sekolah swasta yang telah berdiri sejak tahun 1946. Saat ini sekolah mengimplementasikan panduan kurikulum belajar SMP 2013. SMP Katolik St. Rafael dipimpin oleh Kepala Sekolah Herman Ventje Dien dan ditangani oleh operator sekolah Jidon Youce Kambey.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Akreditasi B</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Tenaga Pendidik Profesional</span>
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Prestasi Akademik dan Non-Akademik</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <span class="text-gray-700">Media Portaldik untuk Ujian Digital</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <h4 class="text-xl font-bold text-gray-800 mb-6">Visi & Misi</h4>
+                    <div class="space-y-6">
+                        <div>
+                            <h5 class="font-semibold text-blue-600 mb-2">VISI</h5>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                "Menjadi lembaga pendidikan Katolik yang unggul dalam membentuk generasi beriman, berilmu, dan berkarakter mulia."
+                            </p>
+                        </div>
+                        <div>
+                            <h5 class="font-semibold text-blue-600 mb-2">MISI</h5>
+                            <ul class="text-gray-600 text-sm space-y-1">
+                                <li>• Menyelenggarakan pendidikan berkualitas berbasis nilai-nilai Kristiani</li>
+                                <li>• Mengembangkan potensi akademik dan non-akademik siswa</li>
+                                <li>• Membentuk karakter yang berintegritas dan bertanggung jawab</li>
+                                <li>• Menciptakan lingkungan belajar yang kondusif dan inspiratif</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Guru -->
+    <section id="guru" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Tenaga Pendidik</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Tim guru profesional dan berpengalaman yang siap membimbing siswa meraih prestasi terbaik</p>
+            </div>
+            
+
+
+            <!-- Template Guru Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Kepala Sekolah -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-blue-600 flex items-center justify-center">
+                        <img src="images/herman-ventje-dien.jpg" alt="Sir. Herman Ventje Dien" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Sir. Herman Ventje Dien. S.Fils</h3>
+                    <p class="text-blue-600 text-center font-medium mb-3">Kepala Sekolah</p>
+                    <p class="text-gray-600 text-sm text-center">Memimpin dengan visi pendidikan berkualitas dan berkarakter</p>
+                </div>
+
+                <!-- Wakil Kepala Sekolah Kurikulum -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-green-600 flex items-center justify-center">
+                        <img src="images/maria-watugigir.jpg" alt="Mam Maria Watugigir" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Mam Maria Watugigir SS.</h3>
+                    <p class="text-green-600 text-center font-medium mb-3">Wakil Kepala Sekolah Bidang Kurikulum</p>
+                    <p class="text-gray-600 text-sm text-center">Mengkoordinasi pengembangan kurikulum sekolah</p>
+                </div>
+
+                <!-- Wakil Kepala Sekolah Kesiswaan -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-purple-600 flex items-center justify-center">
+                        <img src="images/telly-aneke-golijot.jpg" alt="Ibu Telly Aneke Golijot" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Telly Aneke Golijot S.PD</h3>
+                    <p class="text-purple-600 text-center font-medium mb-3">Wakil Kepala Sekolah Bidang Kesiswaan</p>
+                    <p class="text-gray-600 text-sm text-center">Membina dan mengembangkan potensi siswa</p>
+                </div>
+
+                <!-- Guru Bahasa Indonesia Kelas 8-9 -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-red-600 flex items-center justify-center">
+                        <img src="images/ansela-sendy-kandow.jpg" alt="Ibu Ansela Sendy Kandow" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Ansela Sendy Kandow S.PD</h3>
+                    <p class="text-red-600 text-center font-medium mb-3">Guru Bahasa Indonesia Kelas 8-9</p>
+                    <p class="text-gray-600 text-sm text-center">Membimbing siswa dalam kemampuan berbahasa dan sastra</p>
+                </div>
+
+                <!-- Guru IPA -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-yellow-600 flex items-center justify-center">
+                        <img src="images/selmus-makatimbang.jpg" alt="Pak Guru Selmus Makatimbang" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Pak Guru Selmus Makatimbang. M.PD</h3>
+                    <p class="text-yellow-600 text-center font-medium mb-3">Guru IPA</p>
+                    <p class="text-gray-600 text-sm text-center">Menginspirasi siswa dalam eksplorasi sains</p>
+                </div>
+
+                <!-- Guru IPS -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-indigo-600 flex items-center justify-center">
+                        <img src="images/marlina-ratag.jpg" alt="Ibu Marlina Ratag" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Marlina Ratag S.PD</h3>
+                    <p class="text-indigo-600 text-center font-medium mb-3">Guru IPS</p>
+                    <p class="text-gray-600 text-sm text-center">Mengajarkan pemahaman sosial dan budaya</p>
+                </div>
+
+                <!-- Guru Informatika -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-teal-600 flex items-center justify-center">
+                        <img src="images/thalia-putri-wijaya.jpg" alt="Ibu Thalia Putri Wijaya" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Thalia Putri Wijaya S.Kom</h3>
+                    <p class="text-teal-600 text-center font-medium mb-3">Guru Informatika</p>
+                    <p class="text-gray-600 text-sm text-center">Mengembangkan kemampuan teknologi informasi siswa</p>
+                </div>
+
+                <!-- Guru BDT -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-pink-600 flex items-center justify-center">
+                        <img src="images/ansyela-sengkey.jpg" alt="Ibu Ansyela Sengkey" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Ansyela Sengkey S.PD</h3>
+                    <p class="text-pink-600 text-center font-medium mb-3">Guru BDT</p>
+                    <p class="text-gray-600 text-sm text-center">Mengajar Bimbingan dan Konseling</p>
+                </div>
+
+                <!-- Guru Agama -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-orange-600 flex items-center justify-center">
+                        <img src="images/jemmy-mawey.jpg" alt="Pak Guru Jemmy Mawey" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Pak Guru Jemmy Mawey S.Fils</h3>
+                    <p class="text-orange-600 text-center font-medium mb-3">Guru Agama</p>
+                    <p class="text-gray-600 text-sm text-center">Membimbing pembentukan karakter dan spiritual siswa</p>
+                </div>
+
+                <!-- Guru PPKN -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-cyan-600 flex items-center justify-center">
+                        <img src="images/seske-wurangian.jpg" alt="Ibu Seske Wurangian" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Seske Wurangian S.H</h3>
+                    <p class="text-cyan-600 text-center font-medium mb-3">Guru PPKN</p>
+                    <p class="text-gray-600 text-sm text-center">Mengajarkan pendidikan kewarganegaraan</p>
+                </div>
+
+                <!-- Guru PJOK -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-lime-600 flex items-center justify-center">
+                        <img src="images/prisilia-lydia-sundah.jpg" alt="Mam Prisilia Lydia Fransiska Sundah" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Mam Prisilia Lydia Fransiska Sundah S.E</h3>
+                    <p class="text-lime-600 text-center font-medium mb-3">Guru PJOK</p>
+                    <p class="text-gray-600 text-sm text-center">Mengembangkan kesehatan jasmani dan olahraga</p>
+                </div>
+
+                <!-- Guru Matematika Kelas 7-8 -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-emerald-600 flex items-center justify-center">
+                        <img src="images/susan-cicilia.jpg" alt="Ibu Susan Cicilia" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Susan Cicilia S.PD</h3>
+                    <p class="text-emerald-600 text-center font-medium mb-3">Guru Matematika Kelas 7-8</p>
+                    <p class="text-gray-600 text-sm text-center">Mengajar dengan metode yang inovatif dan menyenangkan</p>
+                </div>
+
+                <!-- Guru Seni Budaya -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-violet-600 flex items-center justify-center">
+                        <img src="images/kansia-lusia-moningka.jpg" alt="Ibu Kansia Lusia Moningka" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Kansia Lusia Moningka S.PD</h3>
+                    <p class="text-violet-600 text-center font-medium mb-3">Guru Seni Budaya</p>
+                    <p class="text-gray-600 text-sm text-center">Mengembangkan kreativitas dan apresiasi seni siswa</p>
+                </div>
+
+                <!-- Guru Bahasa Indonesia Kelas 7 -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-rose-600 flex items-center justify-center">
+                        <img src="images/freiny-tumbel.jpg" alt="Ibu Freiny Tumbel" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Freiny Tumbel S.PD</h3>
+                    <p class="text-rose-600 text-center font-medium mb-3">Guru Bahasa Indonesia Kelas 7</p>
+                    <p class="text-gray-600 text-sm text-center">Membangun dasar kemampuan berbahasa siswa</p>
+                </div>
+
+                <!-- Operator Sekolah -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-slate-600 flex items-center justify-center">
+                        <img src="images/jidon-youce-kambey.jpg" alt="Pak Jidon Youce Kambey" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Pak Jidon Youce Kambey</h3>
+                    <p class="text-slate-600 text-center font-medium mb-3">Operator Sekolah</p>
+                    <p class="text-gray-600 text-sm text-center">Mengelola sistem informasi dan teknologi sekolah</p>
+                </div>
+
+                <!-- Bendahara Sekolah -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-amber-600 flex items-center justify-center">
+                        <img src="images/norma-rantung.jpg" alt="Ibu Norma Rantung" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Norma Rantung</h3>
+                    <p class="text-amber-600 text-center font-medium mb-3">Bendahara Sekolah</p>
+                    <p class="text-gray-600 text-sm text-center">Mengelola keuangan dan administrasi sekolah</p>
+                </div>
+
+                <!-- Kepala Perpustakaan -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-sky-600 flex items-center justify-center">
+                        <img src="images/henny-lukar.jpg" alt="Ibu Henny Lukar" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Henny Lukar</h3>
+                    <p class="text-sky-600 text-center font-medium mb-3">Kepala Perpustakaan</p>
+                    <p class="text-gray-600 text-sm text-center">Mengelola dan mengembangkan perpustakaan sekolah</p>
+                </div>
+
+                <!-- Guru Bahasa Inggris -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-green-600 flex items-center justify-center">
+                        <img src="images/maria-watugigir.jpg" alt="Mam Maria Watugigir" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Mam Maria Watugigir SS.</h3>
+                    <p class="text-green-600 text-center font-medium mb-3">Guru Bahasa Inggris</p>
+                    <p class="text-gray-600 text-sm text-center">Mengembangkan kemampuan berbahasa Inggris siswa</p>
+                </div>
+
+                <!-- Guru Matematika Kelas 9 -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-purple-600 flex items-center justify-center">
+                        <img src="images/telly-aneke-golijot.jpg" alt="Ibu Telly Aneke Golijot" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Ibu Telly Aneke Golijot S.PD</h3>
+                    <p class="text-purple-600 text-center font-medium mb-3">Guru Matematika Kelas 9</p>
+                    <p class="text-gray-600 text-sm text-center">Mempersiapkan siswa kelas 9 untuk ujian nasional</p>
+                </div>
+
+
+
+                <!-- Saptam Sekolah -->
+                <div class="bg-gray-50 rounded-2xl p-6 simple-hover">
+                    <div class="w-20 h-20 rounded-full mx-auto mb-4 overflow-hidden bg-stone-600 flex items-center justify-center">
+                        <img src="images/jemmy-sumayku.jpg" alt="Jemmy Sumayku" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <svg class="w-10 h-10 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800 text-center mb-2">Jemmy Sumayku</h3>
+                    <p class="text-stone-600 text-center font-medium mb-3">Saptam Sekolah</p>
+                    <p class="text-gray-600 text-sm text-center">Menjaga keamanan dan ketertiban sekolah</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas -->
+    <section id="fasilitas" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Fasilitas Sekolah</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Fasilitas lengkap dan modern untuk mendukung proses pembelajaran yang optimal</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+                <div class="bg-white rounded-2xl p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Ruang Kelas</h3>
+                    <p class="text-gray-600 text-sm">Ruang kelas yang nyaman untuk proses pembelajaran</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Laboratorium</h3>
+                    <p class="text-gray-600 text-sm">Lab IPA dan Komputer untuk praktikum siswa</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Perpustakaan</h3>
+                    <p class="text-gray-600 text-sm">Koleksi buku lengkap dan ruang baca nyaman</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29l-1.43-1.43z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Lapangan Olahraga</h3>
+                    <p class="text-gray-600 text-sm">Lapangan basket dan voli untuk kegiatan olahraga</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Aula</h3>
+                    <p class="text-gray-600 text-sm">Ruang serbaguna untuk kegiatan sekolah dan acara</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak -->
+    <section id="kontak" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Hubungi Kami</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami siap membantu Anda dengan informasi lebih lanjut tentang SMP Katolik St. Rafael</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Informasi Kontak</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Alamat</h4>
+                                <p class="text-gray-600">Jl. [Alamat Lengkap], Manado, Sulawesi Utara</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Telepon</h4>
+                                <p class="text-gray-600">(0431) [Nomor Telepon]</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
+                                <p class="text-gray-600">info@smpstrafael-manado.sch.id</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-1">Jam Operasional</h4>
+                                <p class="text-gray-600">Senin - Jumat: 07:00 - 15:00 WITA<br>Sabtu: 07:00 - 12:00 WITA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-8">
+                    <h3 class="text-xl font-bold text-gray-800 mb-6">Kirim Pesan</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan nama lengkap">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan email">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Pesan</label>
+                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Tulis pesan Anda"></textarea>
+                        </div>
+                        <button type="button" onclick="showDemoAlert()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+                            Kirim Pesan
+                        </button>
+                        <p class="text-xs text-gray-500 text-center">*Demo - Pesan tidak akan terkirim</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-blue-600">
+                            <img src="images/logo-sekolah.png" alt="Logo SMP Katolik St. Rafael" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <span class="text-blue-600 font-bold text-lg hidden">SR</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold">SMP Katolik St. Rafael</h3>
+                            <p class="text-sm text-gray-400">Manado</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Mendidik dengan kasih, membentuk karakter unggul untuk masa depan yang gemilang.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Menu</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#beranda" class="text-gray-400 hover:text-white transition duration-300">Beranda</a></li>
+                        <li><a href="#profil" class="text-gray-400 hover:text-white transition duration-300">Profil</a></li>
+                        <li><a href="#guru" class="text-gray-400 hover:text-white transition duration-300">Guru</a></li>
+                        <li><a href="#fasilitas" class="text-gray-400 hover:text-white transition duration-300">Fasilitas</a></li>
+                        <li><a href="#kontak" class="text-gray-400 hover:text-white transition duration-300">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Kontak</h4>
+                    <div class="space-y-2 text-sm text-gray-400">
+                        <p>📍 Manado, Sulawesi Utara</p>
+                        <p>📞 (0431) [Nomor Telepon]</p>
+                        <p>✉️ info@smpstrafael-manado.sch.id</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-400 text-sm">
+                    © 2025 SMP Katolik St. Rafael Manado. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Demo alert for contact form
+        function showDemoAlert() {
+            alert('Demo: Terima kasih atas pesan Anda! Dalam implementasi nyata, pesan akan dikirim ke sekolah.');
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96e0315e51eb039f',t:'MTc1NTAwNDAxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
